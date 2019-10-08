@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Employee</title>
+</head>
+<body>
+<h1 class="title">Create Employee</h1>
+<p>
+    <a class="title" href="/employees">Employee list</a>
+</p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+</th:block>
+<form th:action="@{/save-employee}" th:object="${employeeform}" method="post" enctype="multipart/form-data">
+    <table>
+
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{name}" /></td>
+        </tr>
+        <tr>
+            <td>Birth Date:</td>
+            <td><input type="text" th:field="*{birthDate}"/></td>
+        </tr>
+        <tr>
+            <td>Address:</td>
+            <td><input type="text" th:field="*{address}"/></td>
+        </tr>
+        <tr>
+            <td>Avatar:</td>
+            <td><input type="file" th:field="*{avatar}"/></td>
+        </tr>
+        <tr>
+            <td>Salary:</td>
+            <td><input type="text" th:field="*{salary}"/></td>
+        </tr>
+        <tr>
+            <td>Department:</td>
+            <td>
+                <select th:field="*{department}">
+                    <option th:each="d : ${departments}" th:value="${d.id}" th:text="${d.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Create Employee"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
